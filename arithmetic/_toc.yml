@@ -1,0 +1,8 @@
+# Table of contents
+
+format: jb-article
+root: intro
+sections:
+- file: euclid-1
+- file: euclid-2
+  
