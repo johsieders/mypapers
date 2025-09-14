@@ -10,9 +10,10 @@ Such an equation can be written as $ax - qm = b$, or as $ux + vy = m$.
 
 An equation of the form 
 ```{math}
-ux + vy = m with u, v, m \in \mathbb{Z}
+:label: equ-diophantine
+ux + vy = m 
 ```
-is called a *Diophantine equation*.
+with $u, v, m \in \mathbb{Z}$ is called a *Diophantine equation*.
 ````
 
 ````{prf:definition} Modules
