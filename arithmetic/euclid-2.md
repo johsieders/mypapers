@@ -1,8 +1,8 @@
 
-# Euclid's Algorithms and Applications
+# Euclid's Algorithm and Applications
 
-This section is about equations of the form $ax \equiv b \bmod m$ with $a, b, m \in \mathbb{Z}$.
-Such an equation can be written as $ax - qm = b$, or as $ux + vy = m$.  
+This section is about solving equations of the form $ax \equiv b \bmod m$ with $a, b, m \in \mathbb{Z}$.
+Such an equation is equivalent to $ax = b + qm $, which is a *Diophantine equation*.  
 
 
 ````{prf:definition} Diophantine Equation
@@ -24,7 +24,7 @@ for any $a$, $b \in M$ it holds that $a + b \in M$ and $a - b \in M$
 
 ````
 For any $u$, $v \in \mathbb{Z}$, the set $M = \{ux + vy | x, y \in \mathbb{Z}\}$ is a module, 
-the smallest module containing $a$ and $b$.
+the smallest module containing $u$ and $v$.
 
 ````{prf:theorem}
 :label: thr-modules
@@ -42,8 +42,6 @@ Euclid's extended algorithm computes, for any two integers $a$ and $b$, the grea
 and two numbers $x$ and $y$ such that $ax + by = (a,b)$. 
 It can therefore be used to solve congruence equations such as $ax \equiv b \bmod m$.
 Note that $\gcd(a, 0) = \gcd(0,b) = 0$.
-Euclid's plain algorithm It is identical to the extended one, except that $x_k$ and $y_k$ are omitted. It only computes $\gcd(a,b)$. 
-
 
 ````{prf:algorithm} Euclid's Extended Algorithm
  :label: alg-euclid-extended
@@ -64,14 +62,22 @@ $y_k = y_{k-2} - q_k \ y_{k-1}$.
 until $r_n = 0$. Then $r_{n-1} = (a, b)$ and $a   x_{n-1} + b   y_{n-1} = (a, b)$.
 ````
 
+Euclid's plain algorithm is identical to the extended one, 
+except that the $x_k$ and $y_k$ are omitted. 
+
 ````{prf:proof}
 
 We prove first that $r_{n-1} = (a,b)$. 
 
-We have $r_n = 0 = r_{n-2} \ \% \ r_{n-1}$ and $r_{n-1} = r_{n-3} \ \% \ r_{n-2}$, 
-therefore $r_{n-3} \ \% \ r_{n-1} = 0$.
-Continuing in this way will arrive at $r_{k} \ \% \ r_{n-1} = 0$, 
-and finally $b \ \% \ r_{n-1} = 0$ and $a \ \% \ r_{n-1} = 0$. 
+We have 
+
+$0 = r_n \equiv r_{n-2} \bmod r_{n-1}$,    
+$r_{n-1} \equiv r_{n-3} \bmod r_{n-2}$.
+So, by {prf:ref}`lem-euclid-util`, we have  
+$r_{n-3} \equiv 0 \bmod r_{n-1}$.  
+
+Continuing in this way will arrive at $r_{k} \equiv 0 \bmod r_{n-1}$,
+and finally at $b \equiv 0 \bmod r_{n-1}$, $a \equiv 0 \bmod r_{n-1}$.  
 So, $r_{n-1}$ divides $a$ and $b$, hence $r_{n-1} \le (a, b)$.
    
 Now let $q$ be any divisor of $a=r_0$ and $b = r_1$. If $q | r_{k-2}$ and $q | r_{k-1}$, 
@@ -127,7 +133,7 @@ Let $a$, $b$, and $m$ be integers.
 
 (ii) If $(a, m) = 1$ then this solution is unique.
 
-(iii) For any prime number $p$, the residue class ring $ \mathbb{Z}_p$, denoted by $F_p$, is a field.
+(iii) For any prime number $p$, the residue class ring $ \mathbb{Z} / p \mathbb{Z}$, denoted by $F_p$, is a field.
 ````
 
 ````{prf:proof}
@@ -149,21 +155,24 @@ Let $a_1, a_2, \ldots, a_n$ be integers such that $(a_i, m_i) = 1$ for all $i$.
 
 (i) The system of congruences:
 
-$a_1x \equiv b_1 \bmod m_1$,   
-$a_2x \equiv b_2 \bmod m_2$,   
+$a_1x \equiv 1 \bmod m_1$,   
+$a_2x \equiv 1 \bmod m_2$,   
 $\ldots$         
-$a_n x \equiv b_n \bmod m_n$
+$a_n x \equiv 1 \bmod m_n$
 
 has a unique solution.
 
 (ii)
-$\mathbb{Z}/(m_1 m_2 \cdots m_n) \cong \mathbb{Z}/ m_1 \times \mathbb{Z}/m_2\times  \cdots \times \mathbb{Z}/m_n$.
+$\mathbb{Z}/(m_1 m_2 \cdots m_n)\mathbb{Z} \cong \mathbb{Z}/ m_1 \mathbb{Z} \times \mathbb{Z}/m_2 \mathbb{Z} \times  \cdots \times \mathbb{Z}/ \mathbb{Z} m_n$.
 
 (iii)
 $\phi(m_1 m_2 \cdots m_n) = \phi(m_1) \phi(m_2) \cdots \phi(m_n)$
 
 (iv) 
-$|\mathbb{Z}/m| = \phi(m)$
+$|\mathbb{Z}/m \mathbb{Z} | = \phi(m)$
+
+(v) 
+$\mathbb{Z}/m \mathbb{Z} = \{a \in \mathbb{Z} | 0 \le a < m, (a, m) = 1\}$
 ````
 
 ````{prf:proof}
@@ -180,37 +189,54 @@ $q_iq^{-1}_i \equiv 1 \bmod m_j$ for $i = j$,
 $q_iq^{-1}_i \equiv 0 \bmod m_j$ for $i \ne j$.
 
 Hence  
-$a_i^{-1}b_iq_iq^{-1}_i \equiv a^{-1}b_i \bmod m_j$ for $i = j$,  
-$a_i^{-1}b_iq_iq^{-1}_i \equiv 0 \bmod m_j$ for $i \ne j$.
+$a_i^{-1}q_iq^{-1}_i \equiv a^{-1} \bmod m_j$ for $i = j$,  
+$a_i^{-1}q_iq^{-1}_i \equiv 0 \bmod m_j$ for $i \ne j$.
 
 and we define
 
-$x = \sum_{i=1}^{n} a_i^{-1}b_iq_iq^{-1}_i$ 
+$x = \sum_{i=1}^{n} a_i^{-1}q_iq^{-1}_i$ 
 
 which solves the system of congruences:
 
-$x \equiv a_i^{-1}b_i \bmod m_i$ (all $i$).  
-$a_i x \equiv b_i \bmod m_i$.
+$x \equiv a_i^{-1} \bmod m_i$ (all $i$).  
+$a_i x \equiv 1 \bmod m_i$.
 
 The solution is unique:   
 $a_ix \equiv a_iy \bmod m_i$ implies $x \equiv y \bmod m_i$ because $(a_i, m_i) = 1$.
 
-(ii) Each $(b_1, \ldots, b_n) \in \mathbb{Z}/ m_1 \times \mathbb{Z}/m_2\times  \cdots \times \mathbb{Z}/m_n$ 
-can be mapped to the unique solution $x \in \mathbb{Z}/(m_1 m_2 \cdots m_n)$ of the system of congruences.
+(ii) Each $(a_1, \ldots, a_n) \in \mathbb{Z}/ m_1 \mathbb{Z} \times \mathbb{Z}/m_2 \mathbb{Z}\times  \cdots \times \mathbb{Z}/m_n \mathbb{Z}$ 
+can be mapped to the unique solution $x \in \mathbb{Z}/(m_1 m_2 \cdots m_n) \mathbb{Z}$ of the system of congruences.
 
-$x \equiv b_1 \bmod m_1$,   
-$x \equiv b_2 \bmod m_2$,   
+$x \equiv a_1 \bmod m_1$,   
+$x \equiv a_2 \bmod m_2$,   
 $\ldots$         
-$x \equiv b_n \bmod m_n$
+$x \equiv a_n \bmod m_n$
 
-Each $x \in \mathbb{Z}/(m_1 m_2 \cdots m_n)$ can be mapped to    
-$(x \%m_1, \ldots, x \%m_n) \in \mathbb{Z}/ m_1 \times \mathbb{Z}/m_2\times  \cdots \times \mathbb{Z}/m_n$.  
+Each $x \in \mathbb{Z}/(m_1 m_2 \cdots m_n)\mathbb{Z}$ can be mapped to    
+$(x \%m_1, \ldots, x \%m_n) \in \mathbb{Z}/ m_1 \mathbb{Z} \times \mathbb{Z}/m_2 \mathbb{Z} \times  \cdots \times \mathbb{Z}/m_n \mathbb{Z}$.  
 
 (iii) This follows from (ii).  
 
-(iv) We have $|\mathbb{Z}/p| = \phi(p) = p-1$ for prime $p$, so (iii) gives us for $m = pq$ : 
+(iv) According to {prf:ref}`phi-prime`, 
+we have $\phi(p^\alpha) = p^{\alpha - 1} (p - 1)$. Therefore:
 
-$|\mathbb{Z}/pq| = \phi(p)\phi(q)$
+$|\mathbb{Z}/(p^\alpha q^\beta) \mathbb{Z} | = \phi(p^\alpha)\phi(q^\beta)$
 
 The assertion follows from the fundamental theorem of arithmetic.
+
+(v)  Again according to {prf:ref}`phi-prime`,
+if $(a, m) = (b, m) = 1$, and $a \ne b$, then $a$ and $ b$ represent different residue classes modulo $m$.
+Therefore:
+
+$\{a \in \mathbb{Z} | 0 \le a < m, (a, m) = 1\} \subseteq \mathbb{Z}/m \mathbb{Z}$
+
+and we conclude:
+
+$\phi(m) = |\{a \in \mathbb{Z} | 0 \le a < m, (a, m) = 1\}| \le |\mathbb{Z}/m \mathbb{Z}| = \phi(m)$
+ 
 ````
+
+```{bibliography}
+
+```
+

@@ -80,7 +80,11 @@ Due to (iv), we can restrict our attention to positive values of $m$.
 
 ````{prf:theorem}
 :label: thr-equivalence-relation
-For any integer $m$, the relation $a \equiv b \bmod m$ is an equivalence relation on $\mathbb{Z}$, that is
+For any integer $m$, the relation $a \equiv b \bmod m$ is an equivalence relation on $\mathbb{Z}$.
+````
+
+````{prf:proof}
+The assertion is true because:
 
 (i) $a \equiv a \bmod m$.
 
@@ -110,6 +114,22 @@ The assertion is true because:
 (ii) $a \equiv 1 \cdot a \bmod m$ 
 
 (iii) If $a \equiv b \bmod m$ then $a \pm c \equiv b \pm c \bmod m$ and  $ac \equiv bc \bmod m$.   
+````
+
+The following lemma will be useful for understanding Euclid's algorithm, which is covered in the next section.
+
+````{prf:lemma}
+:label: lem-euclid-util
+Let $a$, $b$ and $c$ be integers. If
+$a \equiv 0 \bmod b$,
+and
+$b \equiv c \bmod a$
+then $c \equiv 0 \bmod b$
+````
+
+````{prf:proof}
+$c$ is $b$ plus a multiple of $a$, which is a multiple of $b$. So, $c$ is a multiple of $b$. 
+  
 ````
 
 Addition and multiplication operate on residue classes in much the same way as they do on integers.
@@ -153,6 +173,31 @@ It also holds that $(a \cdot b) / lcm(a,b)$ divides $a$ and $b$, so $(a \cdot b)
 and we get: $a \cdot b \le \gcd(a,b) \cdot lcm(a,b) \le a \cdot b$.
 ````
 
+
+````{prf:theorem}
+:label: phi-prime 
+
+Let $p$ be a prime and $\alpha$ be a positive integer. Then:
+
+```{math}
+:label: equ-phi-prime
+
+ \phi(p^\alpha) = p^{\alpha - 1} (p - 1).
+ 
+```
+````
+
+````{prf:proof}
+We calculate the number of integers between 1 and $p^\alpha$ that are not coprime to $p^\alpha$.
+The result is $p^{\alpha}$ minus that number. 
+
+$\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) > 1 \} =  \{ a\cdot p | 1 \le a < p^{\alpha - 1}\}$,
+
+$|\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) > 1 )\}| =  p^{\alpha - 1}$,
+
+$|\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) = 1 )\}| =  p^{\alpha} - p^{\alpha - 1}$.
+
+````
 
 ````{prf:lemma} Euler's Lemma
 :label: lem-euler
@@ -221,6 +266,7 @@ Because of $(x_k, m) = 1$, we can divide this equation by $\prod_{k=1}^{\phi(m)}
 ````{prf:corollary} Little Fermat
 :label: cor-little-fermat
 Let $p$ be a prime number. Then $a^{p-1} \equiv 1 \bmod p$ for any $a \in \mathbb{Z}_p$.
+````
 
 ````{prf:proof}
 This is Euler's theorem with $m = p$ and $\phi(m) = p - 1$.  
@@ -229,6 +275,32 @@ This is Euler's theorem with $m = p$ and $\phi(m) = p - 1$.
 {prf:ref}`thr-euler` can, at least in theory, be used to find the inverse modulo $m$.
 We clearly have $a^{\phi(m)- k}a^k \equiv 1 \bmod m$, so 
 $a^{-k} \equiv a^{\phi(m)- k} \bmod m$.
-A better approach to finding the inverse modulo $m$ is Euclid's algorithm to which we now turn.
+A better approach to finding the inverse modulo $m$ is Euclid's algorithm to which turn in the next section.
 
+
+
+````{prf:remark} Carmichael numbers
+:label: rem-carmichael
+
+Let $m$, $k > 1$ be integers. If $a^{m-1} \equiv k \bmod p$ for some $a \in \mathbb{Z}$, then, by Euler's theorem,
+$m$ cannot be prime. But there are non-prime integers $m$ such that 
+
+```{math}
+:label: equ-carmichael
+
+a^{m-1} \equiv 1 \bmod p, 
+
+```
+
+for at least one $a$.
+Integer numbers fullfilling {prf:ref}`equ-carmichael` for all $a \in \mathbb{Z}$ are called *Carmichal numbers*. 
+The smallest one is $561 = 3 \cdot 11 \cdot 17$. Testing for primes is notoriously difficult, 
+but {prf:ref}`equ-carmichael` provides a necessary condition for 
+primality. The idea is, for a given $m$, to test the congruence
+
+ $a^{m-1} \equiv 1 \bmod m$
+ 
+ for randomly chosen values of $a$. If the congruence is not satisfied, then $m$ is not prime.
+ The *Fermat test* does exactly that, while the *Miller-Rabin test* is more sophisticated and less easily fooled.
+````
 
