@@ -33,15 +33,15 @@ Every module $M$ can be written as $ M = d \ \mathbb{Z}$ with $d = \min\{x \in M
 
 ````{prf:proof}
 
-It is plain that $ \{d k | k \in \mathbb{Z}\} \subseteq M $. 
+It is plain that $d \ \mathbb{Z} \subseteq M $. 
 Now assume there is an $x \in M$ that is not a multiple of $d$, so $ nd < x < x (n+1)d$. 
 But $0 < y = x - nd < (n+1)d - nd = d$, and $y \in M$. This is a contradiction.
 ````
 
-Euclid's extended algorithm computes, for any two integers $a$ and $b$, the greatest common divisor $\gcd(a,b)$, 
+Euclid's extended algorithm computes for any two integers $a$ and $b$ the greatest common divisor $\gcd(a,b)$, 
 and two numbers $x$ and $y$ such that $ax + by = (a,b)$. 
 It can therefore be used to solve congruence equations such as $ax \equiv b \bmod m$.
-Note that $\gcd(a, 0) = \gcd(0,b) = 0$.
+Recall that $\gcd(a, 0) = \gcd(0,b) = 0$.
 
 ````{prf:algorithm} Euclid's Extended Algorithm
  :label: alg-euclid-extended
@@ -77,7 +77,7 @@ So, by {prf:ref}`lem-euclid-util`, we have
 $r_{n-3} \equiv 0 \bmod r_{n-1}$.  
 
 Continuing in this way will arrive at $r_{k} \equiv 0 \bmod r_{n-1}$,
-and finally at $b \equiv 0 \bmod r_{n-1}$, $a \equiv 0 \bmod r_{n-1}$.  
+and finally at $b \equiv 0 \bmod r_{n-1}$, $a \equiv 0 \bmod r_{n-1}$.
 So, $r_{n-1}$ divides $a$ and $b$, hence $r_{n-1} \le (a, b)$.
    
 Now let $q$ be any divisor of $a=r_0$ and $b = r_1$. If $q | r_{k-2}$ and $q | r_{k-1}$, 
@@ -95,9 +95,9 @@ If this is true for $k=0$ and $k=1$, it holds for all $k \le n-1$:
 $a x_k + b y_k$  
 $= a (x_{k-2} - q_k \ x_{k-1}) + b (y_{k-2} - q_k \ y_{k-1})$  
 $= (a x_{k-2} + b y_{k-2}) - q_k (a x_{k-1} + b y_{k-1})$  
-$= r_{k-2} - q_k \ r_{k-1} = r_{k}$. 
+$= r_{k-2} - q_k \ r_{k-1} = r_{k}$, and finally:
 
-So, $a x_{n-1} + b y_{n-1} = r_{n-1} = (a, b)$.   
+$a x_{n-1} + b y_{n-1} = r_{n-1} = (a, b)$.   
 ````  
 
 ````{prf:theorem} Bezout's Theorem
@@ -125,7 +125,7 @@ or, equivalently, $c$ is a multiple of $(a, b)$.
 ````
 
 ````{prf:corollary}
-:label: cor-bezout} 
+:label: cor-bezout
 
 Let $a$, $b$, and $m$ be integers.
 
@@ -143,9 +143,46 @@ Let $a$, $b$, and $m$ be integers.
 (ii) Assume we have two solutions $x_1$ and $x_2$. Then $a(x_1 - x_2) \equiv 0 \bmod m$. 
 We may divide by $a$ because $(a, m) = 1$ and get $x_1 - x_2 \equiv 0 \bmod m$.
 
-(iii) The equation $ax \equiv 1 \bmod p$ has a unique solution for any non-zero $a \in F_p$. This solution, denoted by $a^{-1}$,
-can be computed by Euclid's algorithm.      
+(iii) The equation $ax \equiv 1 \bmod p$ has a unique solution for any non-zero $a \in F_p$. 
+This solution is called the *modular inverse of $a$* with respect to $m$, denoted by $a^{-1}$.
+It can be computed by the extended Euclid's algorithm.    
 ````
+
+
+````{prf:remark}
+:label: rem-bezout} 
+
+As an immediate consequence of {prf:ref}`cor-bezout` we can characterize 
+the residue class ring $ \mathbb{Z} / m \mathbb{Z}$ as follows: 
+
+(i) $\{a \in \mathbb{Z} | 0 < a < m, (a, m) = 1\} \cup \{0\} \cong \mathbb{Z}/m \mathbb{Z}$.
+
+(ii) $\phi(m) + 1 = |\mathbb{Z}/m \mathbb{Z}|$
+````
+
+As an introduction to the Chinese Remainder Theorem, we consider the residue class ring $\mathbb{Z}/6$. 
+Observing that $6 = 2 \cdot 3$, we can represent $\mathbb{Z}/6\mathbb{Z}$ as a combination of 
+elements of $\mathbb{Z}/2\mathbb{Z}$ and $\mathbb{Z}/3\mathbb{Z}$.
+
+
+| $n$ | $n\ \%2$ | $n\ \%3$ |
+|:---:|:--------:|:--------:|
+| $0$ |   $0$    |   $0$    |
+| $1$ |   $1$    |   $1$    |
+| $2$ |   $0$    |   $2$    |
+| $3$ |   $1$    |   $0$    |
+| $4$ |   $0$    |   $1$    |
+| $5$ |   $1$    |   $2$    |
+
+The table tells us that
+
+$\{1, 5\} \cong \{1\} \times \{1, 2\}$, or:  
+$\mathbb{Z}/6\mathbb{Z} - \{0\} \cong (\mathbb{Z}/2\mathbb{Z} - \{0\}) \times (\mathbb{Z}/3\mathbb{Z} - \{0\})$, and   
+$\phi(6) = \phi(2) \phi(3) = 2$.
+
+The Chinese Remainder Theorem generalizes this fact.
+
+
 
 ````{prf:theorem} Chinese Remainder Theorem
 :label: thr-chinese-remainder
@@ -155,24 +192,39 @@ Let $a_1, a_2, \ldots, a_n$ be integers such that $(a_i, m_i) = 1$ for all $i$.
 
 (i) The system of congruences:
 
-$a_1x \equiv 1 \bmod m_1$,   
-$a_2x \equiv 1 \bmod m_2$,   
-$\ldots$         
-$a_n x \equiv 1 \bmod m_n$
 
+```{math}
+:label: equ-congruences
+
+a_1x \equiv 1 \bmod m_1,
+
+
+a_2x \equiv 1 \bmod m_2,
+
+
+  
+\ldots       
+
+
+a_n x \equiv 1 \bmod m_n  
+
+
+```
 has a unique solution.
 
+
 (ii)
-$\mathbb{Z}/(m_1 m_2 \cdots m_n)\mathbb{Z} \cong \mathbb{Z}/ m_1 \mathbb{Z} \times \mathbb{Z}/m_2 \mathbb{Z} \times  \cdots \times \mathbb{Z}/ \mathbb{Z} m_n$.
+Let   
+$A = \mathbb{Z}/(m_1 m_2 \cdots m_n)\mathbb{Z} - \{0\}$,   
+$A_i = \mathbb{Z}/m_i\mathbb{Z} - \{0\} $
+
+Then
+
+$A \cong A_1 \times A_2 \cdots \times A_n$.
 
 (iii)
 $\phi(m_1 m_2 \cdots m_n) = \phi(m_1) \phi(m_2) \cdots \phi(m_n)$
 
-(iv) 
-$|\mathbb{Z}/m \mathbb{Z} | = \phi(m)$
-
-(v) 
-$\mathbb{Z}/m \mathbb{Z} = \{a \in \mathbb{Z} | 0 \le a < m, (a, m) = 1\}$
 ````
 
 ````{prf:proof}
@@ -204,37 +256,20 @@ $a_i x \equiv 1 \bmod m_i$.
 The solution is unique:   
 $a_ix \equiv a_iy \bmod m_i$ implies $x \equiv y \bmod m_i$ because $(a_i, m_i) = 1$.
 
-(ii) Each $(a_1, \ldots, a_n) \in \mathbb{Z}/ m_1 \mathbb{Z} \times \mathbb{Z}/m_2 \mathbb{Z}\times  \cdots \times \mathbb{Z}/m_n \mathbb{Z}$ 
-can be mapped to the unique solution $x \in \mathbb{Z}/(m_1 m_2 \cdots m_n) \mathbb{Z}$ of the system of congruences.
+(ii) It follows from (i) that the mapping
 
-$x \equiv a_1 \bmod m_1$,   
-$x \equiv a_2 \bmod m_2$,   
-$\ldots$         
-$x \equiv a_n \bmod m_n$
+$T: A \to A_1 \times A_2 \cdots \times A_n$
 
-Each $x \in \mathbb{Z}/(m_1 m_2 \cdots m_n)\mathbb{Z}$ can be mapped to    
-$(x \%m_1, \ldots, x \%m_n) \in \mathbb{Z}/ m_1 \mathbb{Z} \times \mathbb{Z}/m_2 \mathbb{Z} \times  \cdots \times \mathbb{Z}/m_n \mathbb{Z}$.  
+given by
 
-(iii) This follows from (ii).  
+$T(x) = (x \%m_1, x \%m_2, \ldots, x \%m_n)$,
+$T^{-1}(a_1, a_2, \ldots, a_n) = \text{unique solution }x$ of {eq}`equ-congruences`
 
-(iv) According to {prf:ref}`phi-prime`, 
-we have $\phi(p^\alpha) = p^{\alpha - 1} (p - 1)$. Therefore:
+is an isomorphism.
 
-$|\mathbb{Z}/(p^\alpha q^\beta) \mathbb{Z} | = \phi(p^\alpha)\phi(q^\beta)$
 
-The assertion follows from the fundamental theorem of arithmetic.
+(iii) Immediate from (ii)
 
-(v)  Again according to {prf:ref}`phi-prime`,
-if $(a, m) = (b, m) = 1$, and $a \ne b$, then $a$ and $ b$ represent different residue classes modulo $m$.
-Therefore:
-
-$\{a \in \mathbb{Z} | 0 \le a < m, (a, m) = 1\} \subseteq \mathbb{Z}/m \mathbb{Z}$
-
-and we conclude:
-
-$\phi(m) = |\{a \in \mathbb{Z} | 0 \le a < m, (a, m) = 1\}| \le |\mathbb{Z}/m \mathbb{Z}| = \phi(m)$
- 
-````
 
 ```{bibliography}
 

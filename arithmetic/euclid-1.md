@@ -18,7 +18,7 @@ Then $0 \le r - s = (q - p)m < r < m$, so
 $0 \le q - p < 1$ which implies $q = p$ because $q - p$ is an integer.
 ````
 
-{prf:ref}`thr-integer-division` allows us to define the operators $\%$ (*remainder*) and $//$ (*integer division*).
+{prf:ref}`thr-integer-division` allows us to define the operators `%` (*remainder*) and `//` (*integer division*).
 
 ````{prf:definition}
 :label: def-integer-division
@@ -56,7 +56,7 @@ a \equiv b \bmod m.
 ```
 
 (ii) We say that $a$ is a multiple of $m$, or, that $m$ divides $a$ iff $a \equiv 0 \bmod m$. 
-This is can also be written as $m|a$.
+This is can also be written as $m|a$. Note that, a bit surprisingly, we have $0|a$ and $a|0$ for any $a$.
 
 ````
 
@@ -140,7 +140,7 @@ the Fundamental Theorem of Arithmetic. {prf:ref}`thr-euler` is a first approach 
 equations of the form $ax \equiv 1 \bmod m$, that is, finding the inverse modulo $m$.
 But we need to introduce some new concepts before we can get to that.
 
-````{prf:definition} Greatest Common Divisor, Least Common Multiple, Primes
+````{prf:definition} Greatest Common Divisor, Primes, Euler Function
 :label: primes
 
 (i) The *greatest common divisor* of two integers $a$ and $b$ is the largest 
@@ -148,7 +148,7 @@ non-negative integer $d$ such that $a \equiv 0 \bmod d$ and $b \equiv 0 \bmod d$
 as $\gcd(a,b)$ or simply as $(a,b)$. Note that, for any integer $a$, $\gcd(a,0) = \gcd(0,a) = 0$.
 
 (ii) The *least common multiple* of two integers $a$ and $b$ is the smallest non-negative 
-integer $c$ such that $c \equiv 0 \bmod a$ and $c \equiv 0 \bmod b$. It is denoted as $lcm(a,b)$.  
+integer $c$ such that $c \equiv 0 \bmod a$ and $c \equiv 0 \bmod b$. It is denoted as $\text{lcm}(a,b)$.  
 
 (iii) An integer $p$ is called *prime* if it is greater than 1 and has no divisors other than 1 and itself. 
 Two integers $a$ and $b$ are *coprime* iff $(a,b) = 1$. 
@@ -163,14 +163,14 @@ So, $\phi(p) = p - 1$ iff $p$ is prime.
 
 For any integers $a$ and $b$, we have
 
-$\gcd(a,b) \cdot lcm(a,b) = a \cdot b$.
+$\gcd(a,b) \cdot \text{lcm}(a,b) = a \cdot b$.
 ````
 
 ````{prf:proof}
 
-It holds that $(a \cdot b) / \gcd(a,b)$ is a multiple of $a$ and $b$, so $lcm(a, b) \le (a \cdot b) / \gcd(a,b)$.
-It also holds that $(a \cdot b) / lcm(a,b)$ divides $a$ and $b$, so $(a \cdot b) /lcm(a, b) \le \gcd(a,b)$,
-and we get: $a \cdot b \le \gcd(a,b) \cdot lcm(a,b) \le a \cdot b$.
+It holds that $(a \cdot b) / \gcd(a,b)$ is a multiple of $a$ and $b$, so $\text{lcm}(a, b) \le (a \cdot b) / \gcd(a,b)$.
+It also holds that $(a \cdot b) / \text{lcm}(a,b)$ divides $a$ and $b$, so $(a \cdot b) /\text{lcm}(a, b) \le \gcd(a,b)$,
+and we get: $a \cdot b \le \gcd(a,b) \cdot \text{lcm}(a,b) \le a \cdot b$.
 ````
 
 
@@ -189,11 +189,11 @@ Let $p$ be a prime and $\alpha$ be a positive integer. Then:
 
 ````{prf:proof}
 We calculate the number of integers between 1 and $p^\alpha$ that are not coprime to $p^\alpha$.
-The result is $p^{\alpha}$ minus that number. 
+Then $\phi(p^\alpha)$ is $p^{\alpha}$ minus that number. 
 
-$\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) > 1 \} =  \{ a\cdot p | 1 \le a < p^{\alpha - 1}\}$,
+$\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) > 1 \} =  \{ a\cdot p | 1 \le a < p^{\alpha - 1}\}$, so:
 
-$|\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) > 1 )\}| =  p^{\alpha - 1}$,
+$|\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) > 1 )\}| =  p^{\alpha - 1}$, so:
 
 $|\{ a \in \mathbb{N} | a < p^\alpha, (a, p^\alpha) = 1 )\}| =  p^{\alpha} - p^{\alpha - 1}$.
 
@@ -265,7 +265,7 @@ Because of $(x_k, m) = 1$, we can divide this equation by $\prod_{k=1}^{\phi(m)}
 
 ````{prf:corollary} Little Fermat
 :label: cor-little-fermat
-Let $p$ be a prime number. Then $a^{p-1} \equiv 1 \bmod p$ for any $a \in \mathbb{Z}_p$.
+Let $p$ be a prime number. Then $a^{p-1} \equiv 1 \bmod p$ for any $a \in \{1, 2, \ldots, p-1\}$.
 ````
 
 ````{prf:proof}
@@ -275,7 +275,7 @@ This is Euler's theorem with $m = p$ and $\phi(m) = p - 1$.
 {prf:ref}`thr-euler` can, at least in theory, be used to find the inverse modulo $m$.
 We clearly have $a^{\phi(m)- k}a^k \equiv 1 \bmod m$, so 
 $a^{-k} \equiv a^{\phi(m)- k} \bmod m$.
-A better approach to finding the inverse modulo $m$ is Euclid's algorithm to which turn in the next section.
+A better approach to finding the modular inverses is Euclid's algorithm to which we turn in the next section.
 
 
 
@@ -283,24 +283,23 @@ A better approach to finding the inverse modulo $m$ is Euclid's algorithm to whi
 :label: rem-carmichael
 
 Let $m$, $k > 1$ be integers. If $a^{m-1} \equiv k \bmod p$ for some $a \in \mathbb{Z}$, then, by Euler's theorem,
-$m$ cannot be prime. But there are non-prime integers $m$ such that 
+$m$ cannot be prime. But there are non-prime integers $n$ such that 
 
 ```{math}
 :label: equ-carmichael
 
-a^{m-1} \equiv 1 \bmod p, 
+a^{n-1} \equiv 1 \bmod n, 
 
 ```
 
-for at least one $a$.
-Integer numbers fullfilling {prf:ref}`equ-carmichael` for all $a \in \mathbb{Z}$ are called *Carmichal numbers*. 
+holds for at least one $a$.
+Integers $n$ fullfilling {eq}`equ-carmichael` for all $a < n$ are called *Carmichael numbers*. 
 The smallest one is $561 = 3 \cdot 11 \cdot 17$. Testing for primes is notoriously difficult, 
-but {prf:ref}`equ-carmichael` provides a necessary condition for 
-primality. The idea is, for a given $m$, to test the congruence
-
- $a^{m-1} \equiv 1 \bmod m$
- 
- for randomly chosen values of $a$. If the congruence is not satisfied, then $m$ is not prime.
- The *Fermat test* does exactly that, while the *Miller-Rabin test* is more sophisticated and less easily fooled.
+but {eq}`equ-carmichael` provides a necessary condition for 
+primality. The idea is, for a given $m$, to test the congruence 
+$a^{m-1} \equiv 1 \bmod m$
+for randomly chosen values of $a$. If the congruence is not satisfied for at least one $a$, then $m$ is not prime.
+Otherwise, $m$ is is probably prime, the likelihood depending on the numebr of $a$ tested.
+The *Fermat test* does exactly that; the more sophisticated *Miller-Rabin test* is based on the same idea.
 ````
 
