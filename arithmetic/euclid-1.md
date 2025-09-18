@@ -299,7 +299,7 @@ but {eq}`equ-carmichael` provides a necessary condition for
 primality. The idea is, for a given $m$, to test the congruence 
 $a^{m-1} \equiv 1 \bmod m$
 for randomly chosen values of $a$. If the congruence is not satisfied for at least one $a$, then $m$ is not prime.
-Otherwise, $m$ is is probably prime, the likelihood depending on the numebr of $a$ tested.
+Otherwise, $m$ is is probably prime, with the likelihood depending on the number of $a$ tested.
 The *Fermat test* does exactly that; the more sophisticated *Miller-Rabin test* is based on the same idea.
 ````
 
