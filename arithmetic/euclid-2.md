@@ -108,33 +108,31 @@ $ \{ax + by | x, y \in \mathbb{Z}\}= (a, b) \cdot \mathbb{Z}$.
 
 (ii)
 If $(a, m) |b$ then the equation $ax \equiv b \bmod m$ has an integer solution. 
-If $(a, m) = 1$ then this solution is unique.
+This solution is unique if $(a, m) = 1$. 
 
 (iii) For any prime number $p$, the residue class ring $ \mathbb{Z} / p \mathbb{Z}$, denoted by $F_p$, is a field.
 
-(vi) $\{a \in \mathbb{Z} | 1 \le a < m, (a, m) = 1\} \cup \{0\} \cong \mathbb{Z}/m \mathbb{Z}$.
+(iv) For any $a$ coprime to $m$, we have:
 
-(v) $\phi(m) + 1 = |\mathbb{Z}/m \mathbb{Z}|$
+$\mathbb{Z}_m = \{\overline {ax} | 0 \le x < m\}$
+
 ````
 
 ````{prf:proof} 
 
 (i) Let $d = \min\{x \in M\ | x > 0\}$. We know that $(a, b) \in M$ and $(a,b) > 0$, so $d \le (a, b)$.  
-Now, any divisior $q$ of $a$ and $b$ divides $ax + by$ for any two integers $x$ and $y$, thus $q|d$ and $q \le d$. 
+Any divisior $q$ of $a$ and $b$ divides $ax + by$ for any two integers $x$ and $y$, thus $q|d$ and $q \le d$. 
 Setting $q = (a,b)$ completes the proof.
 
 (ii) is a reformulation of (i).  
 
 (iii) By (ii), for each $a \in F_p$, the unique solution of $ax \equiv 1 \bmod p$ is its inverse modulo $m$.
 
-(iv) We define an isomorphism $T:\{a \in \mathbb{Z} | 1 \le a < m, (a, m) = 1\} \cup \{0\} \to \mathbb{Z}/m \mathbb{Z}$.
+(iv) Let $a$ be coprime to $m$ and $b$ an integer. 
+Then there is an $x$ such that $ax \equiv b \bmod m$, and $\overline{ax} = \overline{b}$
 
-todo
-
-(v) follows from (iv)
 
 ````
-
 
 As an introduction to the Chinese Remainder Theorem, we consider the residue class ring $\mathbb{Z}/6$. 
 Observing that $6 = 2 \cdot 3$, we can represent $\mathbb{Z}/6\mathbb{Z} = \{0, 1, 5\}$ as a combination of 
@@ -153,7 +151,7 @@ elements of $\mathbb{Z}/2\mathbb{Z} = \{0, 1\}$ and $\mathbb{Z}/3\mathbb{Z} = \{
 The table tells us that
 
 $\{1, 5\} \cong \{1\} \times \{1, 2\}$, or:  
-$\mathbb{Z}/6\mathbb{Z} - \{0\} \cong (\mathbb{Z}/2\mathbb{Z} - \{0\}) \times (\mathbb{Z}/3\mathbb{Z} - \{0\})$, and   
+$\mathbb{Z}^\times_6 \cong \mathbb{Z}^\times_2 \times \mathbb{Z}^\times_3$, and   
 $\phi(6) = \phi(2) \phi(3) = 2$.
 
 This is a simple, non-trivial instance of the Chinese Remainder Theorem.
@@ -188,27 +186,20 @@ a_n x\equiv 1 \bmod m_n
 has a unique solution.
 
 
-(ii)
-Let        
-$A = \mathbb{Z}/m\mathbb{Z} - \{0\}$,   
-$A_i = \mathbb{Z}/m_i\mathbb{Z} - \{0\} $, then:   
-
-$A \cong A_1 \times A_2 \cdots \times A_n$.
+(ii) $\mathbb{Z}^\times_m \cong \mathbb{Z}^\times_{m_1} \times \mathbb{Z}^\times_{m_2} \cdots \times \mathbb{Z}^\times_{m_n}$
 
 (iii)
 $\phi(m) = \phi(m_1) \phi(m_2) \cdots \phi(m_n)$
 
 (iv)
-Let $ m = \prod_{i=1}^n p_i^{\alpha_i} $, then:  
+If $m = \prod_{i=1}^n p_i^{\alpha_i}$, then:  
 
-$\phi(m) = m \prod_{i=1}^n (1 - \frac{1}{1- p_i}) $
-
+$\phi(m) = m\prod_{i=1}^n (1 - \frac{1}{1-p_i^{\alpha_i}})$
 ````
 
 ````{prf:proof}
-
-(i) 
-$q_i = m//{m_i} = \prod_{i \ne j}m_i$,       
+(i) Let
+$q_i = m//{m_i} = \prod_{i \ne j}m_i$, so       
 $q_im_i = m $.
 
 The inverse of $a_i \bmod m_i$, denoted by $a_i^{-1}$, exists because $(a_i, m_i) = 1$.  
@@ -236,7 +227,7 @@ $a_ix \equiv a_iy \bmod m_i$ implies $x \equiv y \bmod m_i$ because $(a_i, m_i) 
 
 (ii) It follows from (i) that the mapping
 
-$T: A \to A_1 \times A_2 \cdots \times A_n$
+$T: \mathbb{Z}^\times_m \to \mathbb{Z}^\times_{m_1} \times \mathbb{Z}^\times_{m_2} \cdots \times \mathbb{Z}^\times_{m_n}$
 
 given by
 
@@ -248,6 +239,11 @@ is an isomorphism.
 
 (iii) Immediate from (ii)
 
+(iv) Using equation {eq}`equ-phi-prime`, we get:   
+
+$\phi(m) = \phi(p_1^{\alpha_1}) \ \phi(p_2^{\alpha_2}) \ \cdots \ \phi(p_n^{\alpha_n}) =$     
+$p_1^{\alpha_1 - 1}(p_1 - 1) \ p_2^{\alpha_2 - 1}(p_2 - 1) \ \cdots \ p_n^{\alpha_n - 1}(p_n - 1) =$  
+$m\prod_{i=1}^n (1 - \frac{1}{p_i})$ 
 
 ```{bibliography}
 
