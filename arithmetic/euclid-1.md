@@ -164,7 +164,7 @@ But we need to introduce some new concepts before we can get to that.
 
 (i) The *greatest common divisor* of two integers $a$ and $b$ is the largest 
 non-negative integer $d$ such that $a \equiv 0 \bmod d$ and $b \equiv 0 \bmod d$. It is denoted 
-as $\gcd(a,b)$ or simply as $(a,b)$. Note that, for any integer $a$, $\gcd(a,0) = \gcd(0,a) = 0$.
+as $\gcd(a,b)$ or simply as $(a,b)$. Note that, for any integer $a$, $\gcd(a,0) = \gcd(0,a) = a$.
 
 (ii) The *least common multiple* of two integers $a$ and $b$ is the smallest non-negative 
 integer $c$ such that $c \equiv 0 \bmod a$ and $c \equiv 0 \bmod b$. It is denoted as $\text{lcm}(a,b)$.  
