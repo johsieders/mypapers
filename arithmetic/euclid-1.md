@@ -34,12 +34,13 @@ a\%m = r,
 :label: equ-integer-division
 a//m = q.
 ```
-````
 
 These operators work for positive and negative values of $a$. Here is an example:
 
 $17 \ \% \ 3 = 2$ (check: $17 = 5 \cdot 3 + 2$)  
 $-17 \ \% \ 3 = 1$ (check: $-17 = -6 \cdot 3 + 1$). 
+
+````
 
 ````{prf:definition}
 :label: def-congruences
@@ -55,15 +56,14 @@ an integer $q$ such that $a = b + qm$. This is written as
 a \equiv b \bmod m. 
 ```
 
-(ii) We say that $a$ is a multiple of $m$, or, that $m$ divides $a$ iff $a \equiv 0 \bmod m$. 
-This is can also be written as $m|a$. Note that, a bit surprisingly, we have $0|a$ and $a|0$ for any $a$.
-
+(ii) We say that $a$ is a multiple of $m$, or that $m$ divides $a$ iff $a \equiv 0 \bmod m$. 
+This is can also be written as $m|a$. 
 ````
 
-Note that $a\%m$ and $a//m$ are *integer numbers* while $a \equiv b \bmod m$ is a *boolean value*.
-
-
 ````{prf:remark}
+
+We have, a bit surprisingly,  $0|a$ and $a|0$ for any $a$.
+Note that $a\%m$ and $a//m$ are *integer numbers* while $a \equiv b \bmod m$ is a *boolean value*.
 
 (i) $a = (a\%m) + (a//m) m$, 
 
@@ -72,11 +72,10 @@ Note that $a\%m$ and $a//m$ are *integer numbers* while $a \equiv b \bmod m$ is 
 (iii) $a \equiv b \bmod 0$ iff $a = b$,  
 
 (iv) $a \equiv b \bmod m$ iff $a \equiv b \bmod -m$.  
-````
 
 Due to (iii), the case $m = 0$ is uninteresting.   
 Due to (iv), we can restrict our attention to positive values of $m$.    
-
+````
 
 ````{prf:theorem}
 :label: thr-equivalence-relation
@@ -93,16 +92,36 @@ The assertion is true because:
 (iii) If $a \equiv b \bmod m$ and $b \equiv c \bmod m$ then $a \equiv c \bmod m$.  
 ````
 
-Each $m \in \mathbb{Z}_+$ defines the set of integers modulo $m$, denoted by $\mathbb{Z}/m\mathbb{Z}$.
-Two elements $a$ and $b$ are equivalent iff $a \equiv b \bmod m$. 
-The next theorem shows that this set is a ring, the *residue class ring* of $m$. Its elements are called the *residue classes modulo m*.
+There is a subtle but important distinction between an integer $a$ 
+and its equivalence class modulo $m$, denoted by $\overline{a}$. Take $a=5$ and $m= 7$ as an example:
+$\overline{5} = \{5, 12, 19, \ldots\} = \overline{12} = \overline{19} = \ldots$. 
+All numbers $b \equiv a \bmod m$ represent 
+the same equivalence class modulo $m$, denoted by $\mathbb{Z}_m$.
+Choosing $\{0, 1, \ldots, m-1\}$ as natural representatives, we can write
 
+```{math}
+:label: equ-equivalence-classes
+\mathbb{Z}_m = \{\overline{0}, \overline{1}, \ldots\, \overline{m-1}\}
+```
+
+because any two different integers $a$, $b$ between $0$ and $m-1$
+belong to different equivalence classes modulo $m$. Given that
+
+
+```{math}
+:label: equ-equivalence-isomorphism
+
+\mathbb{Z}_m \cong \{0, 1, \ldots, m-1\}
+```
+the notation {eq}`equ-equivalence-classes` is rarely needed.
+The next theorem shows that $\mathbb{Z}_m $ is a ring, the *residue class ring* of $m$. 
+Its elements are called the *residue classes modulo m*.
 
 
 ````{prf:theorem} Residue Class Ring
 :label: thr-residue-class-ring
 
-For any integer $m$, the set $\mathbb{Z}/m\mathbb{Z}$ with the usual 
+For any integer $m$, the set $\mathbb{Z}_m$ with the usual 
 addition and multiplication is a ring.
 ````
 
@@ -140,7 +159,7 @@ the Fundamental Theorem of Arithmetic. {prf:ref}`thr-euler` is a first approach 
 equations of the form $ax \equiv 1 \bmod m$, that is, finding the inverse modulo $m$.
 But we need to introduce some new concepts before we can get to that.
 
-````{prf:definition} Greatest Common Divisor, Primes, Euler Function
+````{prf:definition}
 :label: primes
 
 (i) The *greatest common divisor* of two integers $a$ and $b$ is the largest 
@@ -153,7 +172,14 @@ integer $c$ such that $c \equiv 0 \bmod a$ and $c \equiv 0 \bmod b$. It is denot
 (iii) An integer $p$ is called *prime* if it is greater than 1 and has no divisors other than 1 and itself. 
 Two integers $a$ and $b$ are *coprime* iff $(a,b) = 1$. 
 
-(iv) The Euler function $\phi(m)$ denotes the number of integers between 1 and $m$ that are coprime to $m$. 
+(iv)   
+$U_m = \{a \in \mathbb{Z}| 1 \le a < m, (a,m) = 1 \}$  
+$\mathbb{Z}^+_m = \{\overline{a}| a \in U_m \}$
+
+(iv) The Euler function $\phi(m)$ denotes the number of integers between 1 and $m$ that are coprime to $m$:
+
+$\phi(m) = |U_m| = |\mathbb{Z}^+_m|$
+
 So, $\phi(p) = p - 1$ iff $p$ is prime.
 
 ````
@@ -250,18 +276,19 @@ We repeat the procedure until we arrive at $\{p_1,...,p_n\} = \{q_1,...,q_n\}$.
 ````{prf:theorem} Euler's Theorem
 :label: thr-euler
 
-Let $a$, $m > 1$ be integers. Then $a^{\phi(m)} \equiv 1 \bmod m$ if $(a, m) = 1$.
+Let $a$, $m > 1$ be integers and $(a, m) = 1$. Then $a^{\phi(m)} \equiv 1 \bmod m$.
 ````
 
 ````{prf:proof}
-Let $A = \{x_1, x_2, ..., x_{\phi(m)} \}$ be the set of coprimes of $m$ less than $m$, $a \in A$ and $aA = \{ax_1, ax_2, ..., ax_{\phi(m)} \}$. 
-We observe that $ax_i \equiv ax_j \bmod m$ implies $x_i \equiv x_j \bmod m$ for all $x_i, x_j \in A$ because $(a, m) = 1$.
-So, all elements of $aA$ are distinct and $aA$ is a permutation of $A$. We get:
+We choose an $a \in U_m$ and set $aU_m = \{au |u \in U_m \}$. 
+We observe that $au \equiv av \bmod m$ implies $u \equiv v \bmod m$ for all $u, v \in U_m$ because $(a, m) = 1$.
+So, all elements of $aU_m$ are distinct and $aU_m$ is a permutation of $U_m$. We get:
 
-$\prod_{k=1}^{\phi(m)}ax_k = a^{\phi(m)}\prod_{k=1}^{\phi(m)} x_k   \equiv \prod_{k=1}^{\phi(m)} x_k \bmod m$.
+$\prod_{u \in U_m}u = a^{\phi(m)} \prod_{u \in U_m} u \equiv \prod_{u \in U_m} u \bmod m$.
 
-Because of $(x_k, m) = 1$, we can divide this equation by $\prod_{k=1}^{\phi(m)} x_k$ which gives the result.    
+Because of $(u, m) = 1$, we can divide this equation by $\prod_{u \in U_m}u$ which gives the result.    
 ````
+
 
 ````{prf:corollary} Little Fermat
 :label: cor-little-fermat
@@ -272,12 +299,44 @@ Let $p$ be a prime number. Then $a^{p-1} \equiv 1 \bmod p$ for any $a \in \{1, 2
 This is Euler's theorem with $m = p$ and $\phi(m) = p - 1$.  
 ````
 
-{prf:ref}`thr-euler` can, at least in theory, be used to find the inverse modulo $m$.
-We clearly have $a^{\phi(m)- k}a^k \equiv 1 \bmod m$, so 
+ 
+````{prf:remark} The Inverse of Euler's Theorem is False
+
+The inverse of {prf:ref}`thr-euler` is false, for example:
+
+$3^2 \equiv 1 \bmod 8$
+
+and so is that of {prf:ref}`cor-little-fermat`:
+
+$2^3 \equiv 1 \bmod 7$
+
+
+So, it is useful to define for $a$ with $(a, m) = 1$
+
+$\text{ord}_m(a) = \min \{k \in \mathbb{N} | a^k \equiv 1 \bmod m\}$. 
+
+By definition, 
+
+$\text{ord}_m(a) \le \phi(m)$.
+
+If $ a^k \equiv 1 \bmod m$, then $\text{ord}_m(a) | k $. This can be seen as follows:  
+Let $d = \text{ord}_m(a)$ and $d < k < 2d$. Then $ a^{k - d} \equiv 1 \bmod m$ and $k - d < d$, which is a contradiction.
+So, $\text{ord}_m(a)$ divides $\phi(m)$ and can be computed by successive divisions.
+
+````
+
+````{prf:remark} Modular Inverses
+
+{prf:ref}`thr-euler` is a first step towards modular inverses, because 
+
+$a^{\phi(m)- k}a^k \equiv 1 \bmod m$, 
+
+implies
+
 $a^{-k} \equiv a^{\phi(m)- k} \bmod m$.
+
 A better approach to finding the modular inverses is Euclid's algorithm to which we turn in the next section.
-
-
+````
 
 ````{prf:remark} Carmichael numbers
 :label: rem-carmichael
@@ -288,7 +347,7 @@ $m$ cannot be prime. But there are non-prime integers $n$ such that
 ```{math}
 :label: equ-carmichael
 
-a^{n-1} \equiv 1 \bmod n, 
+a^{n-1} \equiv 1 \bmod n
 
 ```
 
