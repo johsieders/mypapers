@@ -64,6 +64,7 @@ This is can also be written as $m|a$.
 
 We have, a bit surprisingly,  $0|a$ and $a|0$ for any $a$.
 Note that $a\%m$ and $a//m$ are *integer numbers* while $a \equiv b \bmod m$ is a *boolean value*.
+The following facts follow from the previous definitions.
 
 (i) $a = (a\%m) + (a//m) m$, 
 
@@ -105,15 +106,20 @@ Choosing $\{0, 1, \ldots, m-1\}$ as natural representatives, we can write
 ```
 
 because any two different integers $a$, $b$ between $0$ and $m-1$
-belong to different equivalence classes modulo $m$. Given that
+belong to different equivalence classes modulo $m$. The mapping
+
+$T: \{0, 1, \ldots, m-1\} \to \{\overline{0}, \overline{1}, \ldots\, \overline{m-1}\}$
+$a \mapsto \overline{a} \mapsto$
+
+is an isomorphism, so we can write:
 
 
 ```{math}
 :label: equ-equivalence-isomorphism
 
-\mathbb{Z}_m \cong \{0, 1, \ldots, m-1\}
+\mathbb{Z}_m \cong \{0, 1, \ldots, m-1\},
 ```
-the notation {eq}`equ-equivalence-classes` is rarely needed.
+and the notation {eq}`equ-equivalence-classes` is rarely needed.
 The next theorem shows that $\mathbb{Z}_m $ is a ring, the *residue class ring* of $m$. 
 Its elements are called the *residue classes modulo m*.
 
