@@ -41,7 +41,7 @@ But $0 < y = x - nd < (n+1)d - nd = d$, and $y \in M$. This is a contradiction.
 Euclid's extended algorithm computes for any two integers $a$ and $b$ the greatest common divisor $\gcd(a,b)$, 
 and two numbers $x$ and $y$ such that $ax + by = (a,b)$. 
 It can therefore be used to solve congruence equations such as $ax \equiv b \bmod m$.
-Recall that $\gcd(a, 0) = \gcd(0,b) = 0$.
+Recall that $\gcd(a, 0) = \gcd(0,a) = a$.
 
 ````{prf:algorithm} Euclid's Extended Algorithm
  :label: alg-euclid-extended
@@ -134,25 +134,22 @@ Then there is an $x$ such that $ax \equiv b \bmod m$, and $\overline{ax} = \over
 
 ````
 
-As an introduction to the Chinese Remainder Theorem, we consider the residue class ring $\mathbb{Z}/6$. 
-Observing that $6 = 2 \cdot 3$, we can represent $\mathbb{Z}/6\mathbb{Z} = \{0, 1, 5\}$ as a combination of 
-elements of $\mathbb{Z}/2\mathbb{Z} = \{0, 1\}$ and $\mathbb{Z}/3\mathbb{Z} = \{0, 1, 2\}$.
+As an introduction to the Chinese Remainder Theorem, we consider the 
+residue class ring $(\mathbb{Z}/6)^\times$. 
+Observing that $6 = 2 \cdot 3$, we can represent $\mathbb{Z}_6^\times = \{1, 5\}$ as a combination of 
+elements of $\mathbb{Z}_2^\times = \{1\}$ and $\mathbb{Z}_3^\times = \{1, 2\}$.
 
 
 | $n$ | $n\ \%2$ | $n\ \%3$ |
 |:---:|:--------:|:--------:|
-| $0$ |   $0$    |   $0$    |
 | $1$ |   $1$    |   $1$    |
-| $2$ |   $0$    |   $2$    |
-| $3$ |   $1$    |   $0$    |
-| $4$ |   $0$    |   $1$    |
 | $5$ |   $1$    |   $2$    |
 
 The table tells us that
 
 $\{1, 5\} \cong \{1\} \times \{1, 2\}$, or:  
 $\mathbb{Z}^\times_6 \cong \mathbb{Z}^\times_2 \times \mathbb{Z}^\times_3$, and   
-$\phi(6) = \phi(2) \phi(3) = 2$.
+$\phi(6) = \phi(2) \ \phi(3) = 1 \cdot 2 = 2$.
 
 This is a simple, non-trivial instance of the Chinese Remainder Theorem.
 
