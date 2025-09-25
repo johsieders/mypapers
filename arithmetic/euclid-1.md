@@ -113,8 +113,8 @@ T :
 \quad
 \left\{
 \begin{array}{l}
-   \{0, 1, \ldots, m-1\} \to \{\overline{0}, \overline{1}, \ldots\, \overline{m-1}\} \\
-   a \mapsto \overline{a}
+   \{0, 1, \ldots, m-1\} & \to \{\overline{0}, \overline{1}, \ldots\, \overline{m-1}\} \\
+   a & \mapsto \overline{a}
 \end{array}
 \right.
 $$
