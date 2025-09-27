@@ -189,11 +189,11 @@ Two integers $a$ and $b$ are *coprime* iff $(a,b) = 1$.
 
 (iv)   
 $U_m = \{a \in \mathbb{Z}| 1 \le a < m, (a,m) = 1 \}$  
-$\mathbb{Z}^+_m = \{\overline{a}| a \in U_m \}$
+$\mathbb{Z}^\times_m = \{\overline{a}| a \in U_m \}$
 
 (iv) The Euler function $\phi(m)$ denotes the number of integers between 1 and $m$ that are coprime to $m$:
 
-$\phi(m) = |U_m| = |\mathbb{Z}^+_m|$
+$\phi(m) = |U_m| = |\mathbb{Z}^\times_m|$
 
 So, $\phi(p) = p - 1$ iff $p$ is prime.
 
@@ -317,16 +317,14 @@ This is Euler's theorem with $m = p$ and $\phi(m) = p - 1$.
  
 ````{prf:remark} The Inverse of Euler's Theorem is False
 
-The inverse of {prf:ref}`thr-euler` is false, for example:
+Let $a$, $m$ be coprime integers.
+The equation $a^k \equiv 1 \bmod m$ has many more solutions than just the one given by Euler or Fermat.
+We give two examples, the first one refering to Euler's Theorem, the second one to Little Fermat:
 
-$3^2 \equiv 1 \bmod 8$
+$3^2 \equiv 1 \bmod 8$; Euler:  $\phi(8) = 4$   
+$2^3 \equiv 1 \bmod 7$; Fermat: $7 - 1 = 6$
 
-and so is that of {prf:ref}`cor-little-fermat`:
-
-$2^3 \equiv 1 \bmod 7$
-
-
-So, it is useful to define for $a$ with $(a, m) = 1$
+It is therefore useful to define for $a$ with $(a, m) = 1$
 
 $\text{ord}_m(a) = \min \{k \in \mathbb{N} | a^k \equiv 1 \bmod m\}$. 
 
@@ -336,7 +334,9 @@ $\text{ord}_m(a) \le \phi(m)$.
 
 If $ a^k \equiv 1 \bmod m$, then $\text{ord}_m(a) | k $. This can be seen as follows:  
 Let $d = \text{ord}_m(a)$ and $d < k < 2d$. Then $ a^{k - d} \equiv 1 \bmod m$ and $k - d < d$, which is a contradiction.
-So, $\text{ord}_m(a)$ divides $\phi(m)$ and can be computed by successive divisions.
+So, $\text{ord}_m(a)$ divides $\phi(m)$. It can be computed using the relationship 
+
+$\text{ord}_m(a) = \min \{k \in \mathbb{N} | k | \phi(m) \ \text{and} \ a^k \equiv 1 \bmod m\}$
 
 ````
 

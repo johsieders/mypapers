@@ -74,7 +74,7 @@ $r_{n-1} \equiv r_{n-3} \bmod r_{n-2}$.
 So, by {prf:ref}`lem-euclid-util`, we have  
 $r_{n-3} \equiv 0 \bmod r_{n-1}$.  
 
-Continuing in this way will arrive at $r_{k} \equiv 0 \bmod r_{n-1}$,
+Continuing in this way, we will arrive at $r_{k} \equiv 0 \bmod r_{n-1}$,
 and finally at $b \equiv 0 \bmod r_{n-1}$, $a \equiv 0 \bmod r_{n-1}$.
 So, $r_{n-1}$ divides $a$ and $b$, hence $r_{n-1} \le (a, b)$.
    
@@ -135,7 +135,7 @@ Then there is an $x$ such that $ax \equiv b \bmod m$, and $\overline{ax} = \over
 ````
 
 As an introduction to the Chinese Remainder Theorem, we consider the 
-residue class ring $(\mathbb{Z}/6)^\times$. 
+residue class ring $\mathbb{Z}_6^\times$. 
 Observing that $6 = 2 \cdot 3$, we can represent $\mathbb{Z}_6^\times = \{1, 5\}$ as a combination of 
 elements of $\mathbb{Z}_2^\times = \{1\}$ and $\mathbb{Z}_3^\times = \{1, 2\}$.
 
