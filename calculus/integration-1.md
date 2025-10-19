@@ -1,13 +1,13 @@
 # Mathematics4Physics
 
-### Calculus on $\mathbb{R}^1$
+## Calculus on $\mathbb{R}^1$
 
-##### Zeno's Paradoxa
+### Zeno's Paradoxa
 
 Achilles will never overtake the tortoise, but: an infinite sum of numbers close to zero can be finite.
 The standing arrow, but: an infinite sum of numbers close to zero can be positive.
 
-##### Littlewood's Principles
+#### Littlewood's Principles
 
 Every measurable set is nearly a finite union of intervals.
 Every measurable function is nearly continuous.
@@ -17,7 +17,7 @@ $a_1$
 
 
 
-#### Step Functions
+### Step Functions
 
 Consider a closed interval $A = [a, b]\subset \mathbb{R}$. A *partition of A* is an increasing sequence $\left\{x_1, x_2, \text{..} ,x_n\right\}$ with $a = x_1$,  $b = x_n$. Its granularity is $\max \left\{\left.x_k-x_{k-1}\right|k=1,\text{..},n\right\}$. A *step function* is constant on the intervals  $\left[x_{k-1}, x_k\right]$. It is clear that the sum of two step functions is again a step function and the same is true for the product of a step function with a scalar. So the step functions on an interval form a vector space $\mathcal{S}[a, b]$ . The integral of a step function $\phi$ on [a, b] is defined as 
 
@@ -33,7 +33,7 @@ is a linear mapping from $\mathcal{S}[a, b]$ to $\mathbb{R}$. It is also monoton
 
 $\phi \leq \psi \text{Null}\Rightarrow \text{Null}\int_a^b \phi (x) \, dx\text{Null}\text{$<$=}\text{Null}\int _a^b\text{any} \text{for} \text{functions} \text{step} \text{two} \phi  \psi (x) dx,\psi$
 
-##### Theorem (Approximating continuous functions by step functions)
+### Theorem (Approximating continuous functions by step functions)
 
 Let $f:\unicode{f4a1}[a,b]$ be a continuous function. Then, for any$\backslash b \epsilon >0 ,$ there are step functions $\phi$ and $\psi$ such that, on $[a,b]$:
 
@@ -47,11 +47,11 @@ and
 (*\[Psi] - \[Phi] <= \[Epsilon]*)
 ```
 
-#### Integrable Functions
+### Integrable Functions
 
 We give two equivalent definitions of Riemann-integrability. The first one is based on step functions, the second one on intermediate sums.
 
-##### Definition by Step Functions
+#### Definition by Step Functions
 
 The idea is that of a sandwich: A function $f$ defined on $[a,b]$is squeezed between two step functions $\phi ,\psi$ such that: 
 
@@ -67,13 +67,13 @@ and we define:
 
 Equation (![0sr1j0qtwfsaa](img/0sr1j0qtwfsaa.png)) is a concise reformulation of equation (![0kvzm7o8ruv18](img/0kvzm7o8ruv18.png)), there is nothing to prove. 
 
-##### Definition by Intermediate Sums
+#### Definition by Intermediate Sums
 
 An alternative definition of integrability is based on intermediate sums.This needs some terminology: we call $\left\{x_0, x_1, \text{..} ,x_n\right\}$ a partition of $[a,b]$, $\min _{k =1,\text{..},n}\text{  }\left\{x_k-x_{k-1}\right\}$ its granularity, and {![1o4zhvt9zkspp](img/1o4zhvt9zkspp.png), ![1xcr0wel1pvek](img/1xcr0wel1pvek.png), .. ,![04qrvwaf80h0d](img/04qrvwaf80h0d.png)} a set of intermediate points with ![0bqq6f8l0y4it](img/0bqq6f8l0y4it.png)â[![1o0e0hobai7jp](img/1o0e0hobai7jp.png),![1hh4ryzjtk9y6](img/1hh4ryzjtk9y6.png))(k=1,..,n). Here is the definition: A function $f$ is I-integrable on $[a,b]$ iff, for any $\epsilon >0$, we can find a $\delta  >0$such that for any partition with granularity less than Î´ and any set $\xi$ of intermediate points, we have
 
 ![1wo54scrx0xwg](img/1wo54scrx0xwg.png)
 
-##### Theorem (Riemann Integrability)
+### Theorem (Riemann Integrability)
 
 A function $f$ is S-integrable iff it is I-integrable.
 
@@ -115,7 +115,7 @@ We define the integral of a function $f$ over a set $A$ as:
 
 if the function $\chi _{A }f$ is Riemann-integrable. 
 
-#### Intermediate Value Theorem
+### Intermediate Value Theorem
 
 Let f$: [a, b]\to \mathbb{R}$ be a continuous function, and $\mu \in \mathbb{R}$ such that  
 
@@ -126,7 +126,7 @@ Let f$: [a, b]\to \mathbb{R}$ be a continuous function, and $\mu \in \mathbb{R}$
 Then there exists a $\xi \in [a, b]$such that $f[\xi ]=\mu$.
 Proof by halving intervals.
 
-#### Mean Value Theorem
+### Mean Value Theorem
 
 Let f$,\phi : [a, b]\to \mathbb{R}$ be continuous functions with Ïâ¥0.
 

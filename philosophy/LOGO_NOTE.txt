@@ -1,0 +1,7 @@
+IMPORTANT: Add your logo file here
+
+Please place your logo file "westfield2.png" in this directory.
+
+The _config.yml is already configured to use this logo file.
+
+Recommended size: 200x200 pixels or similar square/rectangular format.
